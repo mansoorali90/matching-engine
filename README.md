@@ -1,6 +1,6 @@
 # HFT Matching Engine
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/hft-my-matching-engine-1/ci.yml)](https://github.com/yourusername/hft-my-matching-engine-1/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/mansoorali90/matching-engine/ci.yml)](https://github.com/mansoorali90/matching-engine/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Rust Version](https://img.shields.io/badge/rust-1.75+-orange.svg)](https://rust-lang.org)
 
@@ -9,6 +9,7 @@ A high-performance, production-ready order matching engine for decentralized exc
 ## 🚀 Features
 
 ### Core Functionality
+
 - **Price-Time Priority Matching** - FIFO matching algorithm ensuring fair order execution
 - **Multiple Order Types** - Limit, Market, IOC (Immediate-or-Cancel), FOK (Fill-or-Kill)
 - **Self-Trade Prevention** - Prevents accounts from trading with themselves
@@ -16,6 +17,7 @@ A high-performance, production-ready order matching engine for decentralized exc
 - **Order Cancellation** - Full support for order cancellation with proper cleanup
 
 ### Production Features
+
 - **Decimal Precision** - Uses `rust_decimal` for accurate price/quantity calculations (no floating-point errors)
 - **Circuit Breaker** - Price band protection to prevent extreme price movements
 - **Fee System** - Configurable maker/taker fees with basis point precision
@@ -24,6 +26,7 @@ A high-performance, production-ready order matching engine for decentralized exc
 - **UUID-based IDs** - Collision-resistant order and trade identifiers
 
 ### Safety & Validation
+
 - Order validation (price/quantity limits)
 - Duplicate order detection
 - Insufficient balance checks (extensible)
@@ -31,14 +34,14 @@ A high-performance, production-ready order matching engine for decentralized exc
 
 ## 📊 Performance Benchmarks
 
-| Operation | Latency | Throughput |
-|-----------|---------|------------|
-| Single Trade Execution | **4.5 µs** | ~220K trades/sec |
-| 100 Order Matches | **707 µs** | ~7 µs/trade |
-| 1000 Order Matches | **31.5 ms** | ~31 µs/trade |
+| Operation              | Latency     | Throughput       |
+| ---------------------- | ----------- | ---------------- |
+| Single Trade Execution | **4.5 µs**  | ~220K trades/sec |
+| 100 Order Matches      | **707 µs**  | ~7 µs/trade      |
+| 1000 Order Matches     | **31.5 ms** | ~31 µs/trade     |
 | Order Insertion (1000) | **1.36 ms** | ~735K orders/sec |
 
-*Benchmarks run on Apple M1, release mode optimized*
+_Benchmarks run on Apple M1, release mode optimized_
 
 ## 🏗️ Architecture
 
@@ -69,8 +72,8 @@ A high-performance, production-ready order matching engine for decentralized exc
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/hft-my-matching-engine-1.git
-cd hft-my-matching-engine-1
+git clone https://github.com/mansoorali90/matching-engine.git
+cd matching-engine
 
 # Build in release mode
 cargo build --release
@@ -180,17 +183,17 @@ let market_order = Order::new_market(
 
 ### OrderBook Methods
 
-| Method | Description |
-|--------|-------------|
-| `new(symbol)` | Create order book with default config |
-| `with_config(symbol, config, publisher)` | Create with custom config |
-| `insert_order(order)` | Add order to book |
-| `cancel_order(order_id)` | Cancel existing order |
-| `match_orders()` | Execute order matching |
-| `get_best_bid()` | Get highest bid order |
-| `get_best_ask()` | Get lowest ask order |
-| `get_bid_depth()` | Total bid quantity |
-| `get_ask_depth()` | Total ask quantity |
+| Method                                   | Description                           |
+| ---------------------------------------- | ------------------------------------- |
+| `new(symbol)`                            | Create order book with default config |
+| `with_config(symbol, config, publisher)` | Create with custom config             |
+| `insert_order(order)`                    | Add order to book                     |
+| `cancel_order(order_id)`                 | Cancel existing order                 |
+| `match_orders()`                         | Execute order matching                |
+| `get_best_bid()`                         | Get highest bid order                 |
+| `get_best_ask()`                         | Get lowest ask order                  |
+| `get_bid_depth()`                        | Total bid quantity                    |
+| `get_ask_depth()`                        | Total ask quantity                    |
 
 ### Events
 
@@ -245,6 +248,7 @@ cargo bench
 ```
 
 ### Test Coverage
+
 - ✅ Order book creation and management
 - ✅ Order insertion (buy/sell)
 - ✅ Order matching and execution
@@ -260,19 +264,19 @@ cargo bench
 
 The engine exports Prometheus-compatible metrics:
 
-| Metric | Type | Description |
-|--------|------|-------------|
-| `orders_received_total` | Counter | Orders received by side |
-| `orders_matched_total` | Counter | Total orders matched |
-| `volume_matched_total` | Counter | Total volume matched |
-| `trades_executed_total` | Counter | Total trades executed |
-| `trade_volume_total` | Counter | Total trade volume |
-| `match_latency_ns` | Histogram | Matching latency |
-| `bid_depth` | Gauge | Current bid depth |
-| `ask_depth` | Gauge | Current ask depth |
-| `best_bid` | Gauge | Best bid price |
-| `best_ask` | Gauge | Best ask price |
-| `spread` | Gauge | Current spread |
+| Metric                  | Type      | Description             |
+| ----------------------- | --------- | ----------------------- |
+| `orders_received_total` | Counter   | Orders received by side |
+| `orders_matched_total`  | Counter   | Total orders matched    |
+| `volume_matched_total`  | Counter   | Total volume matched    |
+| `trades_executed_total` | Counter   | Total trades executed   |
+| `trade_volume_total`    | Counter   | Total trade volume      |
+| `match_latency_ns`      | Histogram | Matching latency        |
+| `bid_depth`             | Gauge     | Current bid depth       |
+| `ask_depth`             | Gauge     | Current ask depth       |
+| `best_bid`              | Gauge     | Best bid price          |
+| `best_ask`              | Gauge     | Best ask price          |
+| `spread`                | Gauge     | Current spread          |
 
 ## 🔐 Safety Features
 
